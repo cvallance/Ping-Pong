@@ -65,7 +65,16 @@ var GameSettingsComponent = module.exports = React.createClass({
 
     render: function() {
         var self = this;
-        var settings = [];
+        var settings = [
+            {
+                title: "21 Point Game",
+                maxScore: 21
+            },
+            {
+                title: "11 Point Game",
+                maxScore: 11
+            }
+        ];
 
         var settingsRendered = [];
 
