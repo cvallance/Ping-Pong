@@ -7,14 +7,12 @@ function setupButton(button, buttonNum) {
     //We want to avoid calling the API multiple times, so we'll use this var for that
     var isBusy = false;
     button.on('fall', function () {
-        console.log('button press', buttonNum);
         if (isBusy) {
             return;
         }
 
         isBusy = true;
         tLight.on();
-        console.log('doing button press');
         api.buttonPress(buttonNum, function (err) {
             if (err) {
                 console.log('ERROR api.buttonPress', err);
