@@ -39,6 +39,10 @@ gulp.task('default', ['all'], function() {
     var watcher = gulp.watch(paths.css + '/**/*.less', ['css']);
 });
 
+gulp.task('production', ['all'], function() {
+    console.log('Build finished...');
+});
+
 
 
 gulp.task('main.js', function() {

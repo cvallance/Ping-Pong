@@ -4,7 +4,7 @@
   "scripts": {
     "start": "node server.js",
     "start_local": "NODE_ENV=development node server.js",
-    "postinstall": "gulp"
+    "postinstall": "gulp production"
   },
   "version": "1.0.0-14",
   "dependencies": {
