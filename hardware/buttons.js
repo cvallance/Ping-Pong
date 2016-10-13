@@ -2,6 +2,8 @@ var tessel = require('tessel');
 var api = require('./xeroPongApi');
 
 function setupButton(button, buttonNum) {
+    var tLight = tessel.led[2];
+
     //We want to avoid calling the API multiple times, so we'll use this var for that
     var isBusy = false;
     button.on('fall', function () {
@@ -11,6 +13,7 @@ function setupButton(button, buttonNum) {
         }
 
         isBusy = true;
+        tLight.on();
         console.log('doing button press');
         api.buttonPress(buttonNum, function (err) {
             if (err) {
@@ -18,6 +21,7 @@ function setupButton(button, buttonNum) {
             }
 
             isBusy = false;
+            tLight.off();
         });
     });
 }

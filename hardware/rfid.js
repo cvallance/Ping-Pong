@@ -4,6 +4,8 @@ var api = require('./xeroPongApi');
 
 function setup() {
     var rfid = rfidlib.use(tessel.port['A']);
+    var tLight = tessel.led[3];
+
     rfid.on('ready', function () {
         console.log('Ready to read RFID card');
 
@@ -15,12 +17,14 @@ function setup() {
             }
 
             isBusy = true;
+            tLight.on();
             api.rfidScan(card.uid.toString('hex'), function(error) {
                 if (error) {
                     console.log('ERROR api.rfidScan', error);
                 }
 
                 isBusy = false;
+                tLight.off();
             });
         });
     });
