@@ -11,7 +11,7 @@ Game = module.exports = bookshelf.Model.extend({
 
 
 
-    tableName: 'gamez_table',
+    tableName: 'games',
 
 
 

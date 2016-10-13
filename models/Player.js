@@ -13,7 +13,7 @@ Player = module.exports = bookshelf.Model.extend({
     
     
     
-    tableName: 'playa_table',
+    tableName: 'players',
     
     
     
