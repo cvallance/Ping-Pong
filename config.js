@@ -21,8 +21,8 @@ module.exports = {
         apiAddress: process.env.API_ADDRESS
     },
     production: {
-        url: 'http://127.0.0.1',
-        port: 8989,
+        url: 'https://xeropong.herokuapp.com',
+        port: 80,
         cardReaderPort: 9898,
         database: {
             client: 'postgres',
