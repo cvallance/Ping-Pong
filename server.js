@@ -84,6 +84,9 @@ app.get('/leaderboard', function(req, res) {
 // New hardward endpoints
 app.post('/hardware/rfidscan', function(req, res) {
     console.log('rfidscan', req.body);
+    console.log('rfidscan ALL REQ', req);
+
+    // game.addPlayerByRfid(data.rfid);
 
     res.send(200);
 });
@@ -135,23 +138,6 @@ if (CORE) {
 		game.feelersOnline();
 		game.feelerStatus();
 		game.feelersPingReceived();
-	});
-}
-
-if (CARDREADER) {
-	cardReader.on('read', function(data) {
-		console.log('New read', data);
-		game.addPlayerByRfid(data.rfid);
-	});
-
-	cardReader.on('err', game.cardReadError);
-
-	cardReader.on('connect', function() {
-		io.sockets.emit('cardReader.connect');
-	});
-
-	cardReader.on('disconnect', function() {
-		io.sockets.emit('cardReader.disconnect');
 	});
 }
 
