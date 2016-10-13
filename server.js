@@ -82,13 +82,13 @@ app.get('/leaderboard', function(req, res) {
 });
 
 // New hardward endpoints
-app.post('/hardward/rfidscan', function(req, res) {
+app.post('/hardware/rfidscan', function(req, res) {
     console.log('rfidscan', req.body);
 
     res.send(200);
 });
 
-app.post('/leaderboard/buttonpress', function(req, res) {
+app.post('/hardware/buttonpress', function(req, res) {
     console.log('buttonpress', req.body);
 
     res.send(200);
