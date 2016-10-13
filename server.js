@@ -83,7 +83,7 @@ app.post('/hardware/rfidscan', function(req, res) {
         return res.sendStatus(500);
     }
 
-    game.addPlayerByRfid(req.body.cardId);
+    game.addPlayerByRfid({data: req.body.cardId});
 
     res.sendStatus(200);
 });

@@ -527,14 +527,15 @@ gameController.prototype.checkServerSwitch = function(forceServe) {
         switchServer = totalScore % global.settings.serverSwitchLimit === 0 || this.serverSwitchThresholdMet() || typeof forceServe !== 'undefined',
         switchPreviousServer = (totalScore + 1) % global.settings.serverSwitchLimit === 0 && pointJustCancelled;
     
-    if(switchServer || switchPreviousServer) {
+    if (switchServer || switchPreviousServer) {
         
-        if(typeof forceServe !== 'undefined') {
+        if (typeof forceServe !== 'undefined') {
             serve = forceServe;
-        } else if(this.score[0] > 0 || this.score[1] > 0) {
+        }
+        else if (this.score[0] > 0 || this.score[1] > 0) {
             serve = (serve == 1) ? 0 : 1;
             // A point was just cancelled, switch to previous server
-            if(switchPreviousServer) {
+            if (switchPreviousServer) {
                 serve = serve;
             }
         }
