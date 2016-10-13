@@ -35,10 +35,11 @@ var PlayerComponent = module.exports = React.createClass({
             _this = this,
             positionNS = 'player' + _this.props.positionId;
 
+
         this.props.player.on('change', function (player) {
             _this.join(player);
         });
-
+console.log(node);
         node.socket.on('game.score', function (data) {
             if (data.player == _this.props.positionId) {
                 _this.score(data.score);
