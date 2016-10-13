@@ -20,6 +20,7 @@ Game = module.exports = bookshelf.Model.extend({
         var end;
 
         this.on('saving', function() {
+            console.log('GAME SAVING');
             end = moment();
             this.set('end', end.format(datetimeFormat));
             this.set('duration', end.diff(this.start));
