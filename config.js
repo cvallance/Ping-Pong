@@ -18,7 +18,7 @@ module.exports = {
                 tableName: 'migrations'
             }
         },
-        apiAddress: process.env.API_ADDRESS
+        apiAddress: process.env.API_ADDRESS || 'https://xeropong.herokuapp.com'
     },
     production: {
         url: 'https://xeropong.herokuapp.com',
@@ -39,7 +39,7 @@ module.exports = {
                 tableName: 'migrations'
             }
         },
-        apiAddress: process.env.API_ADDRESS
+        apiAddress: process.env.API_ADDRESS || 'https://xeropong.herokuapp.com'
     },
     global: {
         sparkCore: {
