@@ -255,8 +255,8 @@ gameController.prototype.end = function(complete) {
         player0_score: gameModel.get('player0_score'),
         player1_id: gameModel.get('player1_id'),
         player1_score: gameModel.get('player1_score'),
-        score_delta: gameModelr.get('score_delta'),
-        start: gameModelr.get('start'),
+        score_delta: gameModel.get('score_delta'),
+        start: gameModel.get('start'),
         winner_id: gameModel.get('winner_id')
     };
 
