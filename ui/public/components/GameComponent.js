@@ -108,7 +108,7 @@ var GameComponent = module.exports = React.createClass({
             node.socket.emit('fakeJoin', {'name' : name});
         }
 
-        $('.go').on('click', addPlayer());
+        $('.go').on('click', addPlayer);
         $('input').keydown(function(e) {
             if (e.keyCode == 13) {
                 addPlayer();
