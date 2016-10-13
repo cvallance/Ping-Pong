@@ -44,10 +44,7 @@
     "request": "^2.40.0",
     "through2": "^0.6.1",
     "uglifyify": "^2.5.0",
-    "underscore": "1.6.0"
-  },
-  "devDependencies": {
-    "async": "^0.9.0",
+    "underscore": "1.6.0",
     "browserify": "^5.9.1",
     "del": "^0.1.2",
     "envify": "^2.0.1",
@@ -55,11 +52,13 @@
     "exorcist": "^0.1.6",
     "node-google-text-to-speech": "^0.1.0",
     "reactify": "^0.14.0",
-    "rfid-pn532": "^0.1.9",
     "slug": "^0.5.0",
     "stream-combiner": "^0.2.1",
-    "tessel": "^0.3.25",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^1.0.1"
+  },
+  "devDependencies": {
+    "rfid-pn532": "^0.1.9",
+    "tessel": "^0.3.25"
   }
 }
