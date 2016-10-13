@@ -39,11 +39,43 @@ gulp.task('default', ['all'], function() {
     var watcher = gulp.watch(paths.css + '/**/*.less', ['css']);
 });
 
-gulp.task('production', ['all'], function() {
-    console.log('Build finished...');
+gulp.task('production', ['all-prod'], function() {
 });
 
+gulp.task('main.js-prod', function() {
 
+    var bundle;
+
+    bundle = browserify({ cache: {}, packageCache: {}, fullPaths: true, debug: true });
+
+    bundle.transform({ global: true }, 'uglifyify');
+
+    // Add  third party libs. We don't want Browserify to parse them because they
+    // aren't setup to use Browserify - we'd just be wasting time.
+    bundle.add(paths.js + '/third_party/font.js', { noparse: true });
+
+    // Add the main.js file
+    bundle.add(paths.js + '/main.js');
+
+    bundle.transform('reactify');
+
+    cleanJS(function() {
+        return bundle.bundle()
+            .on('error', function(e) {
+                gutil.beep();
+                gutil.log(gutil.colors.red('Browserify Error'), e);
+            })
+            // Exorcist extracts Browserify's inline source map and moves it to an external file
+            .pipe(exorcist(paths.build + '/main.js.map'))
+            .pipe(source('main.js'))
+            .pipe(buffer())
+            .pipe(rev())
+            .pipe(gulp.dest(paths.build))
+            .pipe(rev.manifest())
+            .pipe(rename('js.json'))
+            .pipe(gulp.dest(paths.versions));
+    });
+});
 
 gulp.task('main.js', function() {
 
@@ -119,56 +151,6 @@ gulp.task('css', ['css:clean'], function() {
 gulp.task('css:clean', function(cb) {
     return del([path.join(paths.build, '*.css')], cb);
 });
-
-// gulp.task('say', function(cb) {
-//  var speak = new Speak({
-//         tts: {
-//             engine: {                       // The engine to use for tts
-//                 name: 'voicerss',
-//                 key: 'ebe126680a19408badc455097eb8b3b5',     // The API key to use
-//             },
-//             lang: 'en-us',                  // The voice to use
-//             speed: 60,                      // Speed in %
-//             format: 'mp3',                  // Output audio format
-//             quality: '44khz_16bit_stereo',  // Output quality
-//             cache: __dirname + '/ui/public/sounds',    // The cache directory were audio files will be stored
-//             loglevel: 0,                    // TTS log level (0: trace -> 5: fatal)
-//             delayAfter: 500                 // Mark a delay (ms) after each message
-//         },
-//         speak: {
-//             volume: 80,                     // Audio player volume
-//             loglevel: 0                     // Audio player log level
-//         },
-//         loglevel: 0                         // Wrapper log level
-//     });
-
-//     speak.once('ready', function() {
-
-//         // Chaining
-//         speak
-//             .say("Hello and welcome here !")
-//             .wait(1000)
-//             .say({
-//                 src: 'Parlez-vous français ?',
-//                 lang: 'fr-fr',
-//                 speed: 30
-//             });
-
-//         // Catch when all queue is complete
-//         speak.once('idle', function() {
-//             speak.say("Of course, with my new text to speech wrapper !");
-//         });
-
-//         // Will stop and clean all the queue
-//         setTimeout(function() {
-//             speak.stop();
-//             speak.say('Ok, abort the last queue !')
-//             return;
-//         }, 1000);
-
-//     });
-// });
-
 
 gulp.task('sounds', function(cb) {
 
@@ -301,3 +283,4 @@ function getGoogleTTS(phrase, language, cb) {
 
 
 gulp.task('all', ['css', 'main.js']);
+gulp.task('all-prod', ['css', 'main.js-prod']);
