@@ -32,11 +32,7 @@ if (CORE) {
 	core = new spark.Core(settings.sparkCore);
 }
 
-if(CARDREADER) {
-	cardReader = require('./lib/cardReader');
-}
-
-gameController = require('./classes/gameController');
+var gameController = require('./classes/gameController');
 
 game = {};
 player = {};
@@ -57,7 +53,6 @@ io.configure(function() {
 
 
 app.get('/', function(req, res) {
-
 	delete require.cache[path.resolve('./versions/js.json')];
 	delete require.cache[path.resolve('./versions/css.json')];
 
@@ -84,15 +79,21 @@ app.get('/leaderboard', function(req, res) {
 
 // New hardward endpoints
 app.post('/hardware/rfidscan', function(req, res) {
-    console.log('rfidscan', req.body);
+    if (!req.body || !req.body.cardId) {
+        return res.sendStatus(500);
+    }
 
-    // game.addPlayerByRfid(data.rfid);
+    game.addPlayerByRfid(req.body.cardId);
 
     res.sendStatus(200);
 });
 
 app.post('/hardware/buttonpress', function(req, res) {
-    console.log('buttonpress', req.body);
+    if (!req.body || !req.body.buttonNum) {
+        return res.sendStatus(500);
+    }
+
+    console.log('buttonpress', req.body.buttonNum);
 
     res.sendStatus(200);
 });
@@ -108,10 +109,6 @@ io.sockets.on('connection', function(client) {
 	game.reset();
 	game.clientJoined();
 
-	if (CARDREADER) {
-		cardReader.connectionStatus();
-	}
-
 	if (!CORE) {
 		client.on('fakeScored', game.feelerPressed); // Fake score event for easier testing
 		client.on('fakeEndGame', function() {
@@ -121,7 +118,6 @@ io.sockets.on('connection', function(client) {
 	}
 
 	client.on('fakeJoin', clientJoined);
-
 });
 
 
