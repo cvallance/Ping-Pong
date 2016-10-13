@@ -3,7 +3,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start_local": "NODE_ENV=development node server.js"
+    "start_local": "NODE_ENV=development node server.js",
+    "postinstall": "gulp"
   },
   "version": "1.0.0-14",
   "dependencies": {
