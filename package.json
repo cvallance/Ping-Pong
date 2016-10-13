@@ -3,7 +3,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start_local": "NODE_ENV=development node server.js"
+    "start_local": "NODE_ENV=development node server.js",
+    "postinstall": "gulp production"
   },
   "version": "1.0.0-14",
   "dependencies": {
@@ -20,6 +21,15 @@
     "express": "^4.7.2",
     "fancy-log": "1.1.0",
     "google-speech": "0.0.5",
+    "gulp": "^3.8.6",
+    "gulp-autoprefixer": "0.0.8",
+    "gulp-buffer": "0.0.2",
+    "gulp-csso": "^0.2.9",
+    "gulp-less": "^1.3.3",
+    "gulp-plumber": "^0.6.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-rev": "^1.1.0",
+    "gulp-util": "^3.0.0",
     "howler": "^1.1.25",
     "jade": "^1.5.0",
     "knex": "^0.9.0",
@@ -34,31 +44,21 @@
     "request": "^2.40.0",
     "through2": "^0.6.1",
     "uglifyify": "^2.5.0",
-    "underscore": "1.6.0"
-  },
-  "devDependencies": {
-    "async": "^0.9.0",
+    "underscore": "1.6.0",
     "browserify": "^5.9.1",
     "del": "^0.1.2",
     "envify": "^2.0.1",
     "event-stream": "^3.1.7",
     "exorcist": "^0.1.6",
-    "gulp": "^3.8.6",
-    "gulp-autoprefixer": "0.0.8",
-    "gulp-buffer": "0.0.2",
-    "gulp-csso": "^0.2.9",
-    "gulp-less": "^1.3.3",
-    "gulp-plumber": "^0.6.4",
-    "gulp-rename": "^1.2.0",
-    "gulp-rev": "^1.1.0",
-    "gulp-util": "^3.0.0",
     "node-google-text-to-speech": "^0.1.0",
     "reactify": "^0.14.0",
-    "rfid-pn532": "^0.1.9",
     "slug": "^0.5.0",
     "stream-combiner": "^0.2.1",
-    "tessel": "^0.3.25",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^1.0.1"
+  },
+  "devDependencies": {
+    "rfid-pn532": "^0.1.9",
+    "tessel": "^0.3.25"
   }
 }
