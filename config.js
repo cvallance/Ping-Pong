@@ -6,11 +6,11 @@ module.exports = {
         database: {
             client: 'postgres',
             connection: {
-                host: '127.0.0.1',
-                port: 8889,
-                user: '',
-                password: '',
-                database: 'pong',
+                host: process.env.DB_HOST,
+                port: process.env.DB_PORT,
+                user: process.env.DB_USER,
+                password: process.env.DB_PWD,
+                database: process.env.DB_HOST,
                 ssl: true
             },
             migrations: {
@@ -18,20 +18,20 @@ module.exports = {
                 tableName: 'migrations'
             }
         },
-        apiAddress: '' //the host address where the api is... tessel board needs this to connect to
+        apiAddress: process.env.API_ADDRESS
     },
     production: {
-        url: 'http://127.0.0.1',
-        port: 8989,
+        url: 'https://xeropong.herokuapp.com',
+        port: 80,
         cardReaderPort: 9898,
         database: {
             client: 'postgres',
             connection: {
-                host: '127.0.0.1',
-                port: 8889,
-                user: '',
-                password: '',
-                database: 'pong',
+                host: process.env.DB_HOST,
+                port: process.env.DB_PORT,
+                user: process.env.DB_USER,
+                password: process.env.DB_PWD,
+                database: process.env.DB_HOST,
                 ssl: true
             },
             migrations: {
@@ -39,7 +39,7 @@ module.exports = {
                 tableName: 'migrations'
             }
         },
-        apiAddress: '' //the host address where the api is... tessel board needs this to connect to
+        apiAddress: process.env.API_ADDRESS
     },
     global: {
         sparkCore: {
