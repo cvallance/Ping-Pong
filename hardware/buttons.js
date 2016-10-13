@@ -23,6 +23,7 @@ function setupButton(button, buttonNum) {
                 return;
             }
 
+            console.log('doing button press');
             api.buttonPress(buttonNum, function(err) {
                 if (err) {
                     console.log('ERROR api.buttonPress', err);

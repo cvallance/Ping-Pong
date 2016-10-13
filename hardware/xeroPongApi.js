@@ -34,7 +34,6 @@ function buttonPress(buttonNum, done) {
                 return done(err);
             }
 
-            console.log('api.buttonPress res body', res, body);
             done(null);
         }
     );
