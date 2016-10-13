@@ -22,7 +22,7 @@ module.exports = {
     },
     production: {
         url: 'https://xeropong.herokuapp.com',
-        port: 80,
+        port: process.env.PORT || 80, //Lets it get set by heroku
         cardReaderPort: 9898,
         database: {
             client: 'postgres',
