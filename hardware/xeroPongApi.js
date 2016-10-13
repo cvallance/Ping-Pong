@@ -24,7 +24,7 @@ function rfidScan(cardId, done) {
 function buttonPress(buttonNum, done) {
     console.log('xeroPongApi.buttonPress', buttonNum);
 
-    var path = '/hardware/buttonPress';
+    var path = '/hardware/buttonpress';
     request.post(
         config.apiAddress + path,
         {json: {buttonNum: buttonNum}},

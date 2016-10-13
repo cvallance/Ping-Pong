@@ -12,7 +12,6 @@ var config = getConfig[environment];
 var settings = getConfig.global;
 var	http = require('http');
 
-
 global.settings = settings;
 
 app.engine('jade', jade.__express);
@@ -74,13 +73,25 @@ app.get('/maxScore', function(req, res){
     res.json(global.settings.maxScore);
 });
 
-
 app.get('/leaderboard', function(req, res) {
-	// This could use a streaming response instead
-	leaderboard.get(10)
-		.then(function(players) {
-			res.json(players.toJSON());
-		});
+    // This could use a streaming response instead
+    leaderboard.get(10)
+        .then(function(players) {
+            res.json(players.toJSON());
+        });
+});
+
+// New hardward endpoints
+app.post('/hardward/rfidscan', function(req, res) {
+    console.log('rfidscan', req.body);
+
+    res.send(200);
+});
+
+app.post('/leaderboard/buttonpress', function(req, res) {
+    console.log('buttonpress', req.body);
+
+    res.send(200);
 });
 
 server.listen(config.port);
