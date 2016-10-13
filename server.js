@@ -95,6 +95,8 @@ app.post('/hardware/buttonpress', function(req, res) {
 
     console.log('buttonpress', req.body.buttonNum);
 
+    game.feelerPressed(req.body.buttonNum);
+
     res.sendStatus(200);
 });
 
@@ -124,7 +126,10 @@ io.sockets.on('connection', function(client) {
 if (CORE) {
 	core.on('scored', game.feelerPressed);
 	core.on('endGame', function() {
-		var record = (settings.recordUnfinishedGames !== 'undefined')? settings.recordUnfinishedGames : false;
+		var record = (settings.recordUnfinishedGames !== 'undefined')
+            ? settings.recordUnfinishedGames
+            : false;
+
 		game.end(record);
 	});
 	core.on('ping', game.feelersPingReceived);

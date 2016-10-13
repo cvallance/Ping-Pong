@@ -283,8 +283,10 @@ gameController.prototype.end = function(complete) {
  * i.e. `score` or `removePoint`.
  */
 gameController.prototype.feelerPressed = function(data) {
+    console.log('feelerPressed', data);
+
     var positionId = data.data - 1;
-    if(players.length < 2){
+    if (players.length < 2){
         global.settings.maxScore = global.settings.maxScore === 11 ? 21 : 11;
         global.settings.serverSwitchLimit = global.settings.maxScore === 11 ? 2 : 5;
         global.settings.serverSwitchThreshold = global.settings.maxScore - 1;
@@ -294,7 +296,6 @@ gameController.prototype.feelerPressed = function(data) {
     }
 
     game.feelers[positionId].emit('press', positionId);
-
 };
 
 
