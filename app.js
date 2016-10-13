@@ -12,4 +12,6 @@ var
     app = module.exports = express();
 
 app.use(cors());
+app.use(express.bodyParser());
+
 app.set('bookshelf', bookshelf);

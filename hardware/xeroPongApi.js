@@ -15,7 +15,6 @@ function rfidScan(cardId, done) {
                 return done(err);
             }
 
-            console.log('api.rfidScan res body', res, body);
             done(null);
         }
     );

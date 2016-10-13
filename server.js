@@ -14,6 +14,7 @@ var	http = require('http');
 
 global.settings = settings;
 
+
 app.engine('jade', jade.__express);
 app.use(serveStatic('./ui/public'));
 app.locals.config = config;
@@ -84,17 +85,16 @@ app.get('/leaderboard', function(req, res) {
 // New hardward endpoints
 app.post('/hardware/rfidscan', function(req, res) {
     console.log('rfidscan', req.body);
-    console.log('rfidscan ALL REQ', req);
 
     // game.addPlayerByRfid(data.rfid);
 
-    res.send(200);
+    res.sendStatus(200);
 });
 
 app.post('/hardware/buttonpress', function(req, res) {
     console.log('buttonpress', req.body);
 
-    res.send(200);
+    res.sendStatus(200);
 });
 
 server.listen(config.port);
