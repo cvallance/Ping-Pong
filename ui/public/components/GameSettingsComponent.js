@@ -67,11 +67,11 @@ var GameSettingsComponent = module.exports = React.createClass({
         var self = this;
         var settings = [
             {
-                title: "21 Point Game",
+                title: "21 Points",
                 maxScore: 21
             },
             {
-                title: "11 Point Game",
+                title: "11 Points",
                 maxScore: 11
             }
         ];
