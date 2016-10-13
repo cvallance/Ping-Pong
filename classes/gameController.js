@@ -247,7 +247,21 @@ gameController.prototype.end = function(complete) {
         player1_score: game.score[1],
         score_delta: Math.abs(game.score[0] - game.score[1])
     });
-    
+
+    var toLogFirst = {
+        duration: gameModel.get('duration'),
+        end: gameModel.get('end'),
+        player0_id: gameModel.get('player0_id'),
+        player0_score: gameModel.get('player0_score'),
+        player1_id: gameModel.get('player1_id'),
+        player1_score: gameModel.get('player1_score'),
+        score_delta: gameModelr.get('score_delta'),
+        start: gameModelr.get('start'),
+        winner_id: gameModel.get('winner_id')
+    };
+
+    console.log('LOGGING BEFORE SAVE GAME', toLogFirst);
+
     // Add the game to the DB
     gameModel.save()
         .then(function() {
@@ -265,6 +279,19 @@ gameController.prototype.end = function(complete) {
 
         // Increment play count
         player.set('play_count', player.get('play_count') + 1);
+
+        var toLog = {
+            elo: player.get('elo'),
+            gender: player.get('gender'),
+            id: player.get('id'),
+            image: player.get('image'),
+            name: player.get('name'),
+            play_count: player.get('play_count'),
+            rfid: player.get('rfid'),
+            uri: player.get('uri')
+        };
+
+        console.log('LOGGING BEFORE SAVE PLAYER', toLog);
 
         player.save();
 
