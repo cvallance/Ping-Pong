@@ -211,19 +211,17 @@ gameController.prototype.end = function(complete) {
         return this.reset();
     }
 
-    if(!game.inProgress) {
+    if (!game.inProgress) {
         console.log("game not started");
         // Game not started, try to start...
         return;
     }
 
-
-
     var _this = this,
         winningPlayer = this.leadingPlayer(),
         updatedRanks = [];
     
-    if(winningPlayer - 1 === 0) {
+    if (winningPlayer - 1 === 0) {
         updatedRanks = [elo.players[0].winningLeaderboardRank, elo.players[1].losingLeaderboardRank];
     } else {
         updatedRanks = [elo.players[0].losingLeaderboardRank, elo.players[1].winningLeaderboardRank];
@@ -248,19 +246,19 @@ gameController.prototype.end = function(complete) {
         score_delta: Math.abs(game.score[0] - game.score[1])
     });
 
-    var toLogFirst = {
-        duration: gameModel.get('duration'),
-        end: gameModel.get('end'),
-        player0_id: gameModel.get('player0_id'),
-        player0_score: gameModel.get('player0_score'),
-        player1_id: gameModel.get('player1_id'),
-        player1_score: gameModel.get('player1_score'),
-        score_delta: gameModel.get('score_delta'),
-        start: gameModel.get('start'),
-        winner_id: gameModel.get('winner_id')
-    };
-
-    console.log('LOGGING BEFORE SAVE GAME', toLogFirst);
+    // var toLogFirst = {
+    //     duration: gameModel.get('duration'),
+    //     end: gameModel.get('end'),
+    //     player0_id: gameModel.get('player0_id'),
+    //     player0_score: gameModel.get('player0_score'),
+    //     player1_id: gameModel.get('player1_id'),
+    //     player1_score: gameModel.get('player1_score'),
+    //     score_delta: gameModel.get('score_delta'),
+    //     start: gameModel.get('start'),
+    //     winner_id: gameModel.get('winner_id')
+    // };
+    //
+    // console.log('LOGGING BEFORE SAVE GAME', toLogFirst);
 
     // Add the game to the DB
     gameModel.save()
@@ -270,8 +268,14 @@ gameController.prototype.end = function(complete) {
         });
         
     players.forEach(function(player, i) {
-        
-        if(i === winningPlayer - 1) {
+
+        console.log('player', player);
+        console.log('i', i);
+        console.log('winningPlayer', winningPlayer);
+
+        console.log('elo', elo);
+
+        if (i === winningPlayer - 1) {
             player.set('elo', elo.players[i].winningRank);
         } else {
             player.set('elo', elo.players[i].losingRank);
