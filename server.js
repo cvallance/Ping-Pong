@@ -83,7 +83,7 @@ app.post('/hardware/rfidscan', function(req, res) {
         return res.sendStatus(500);
     }
 
-    game.addPlayerByRfid({data: req.body.cardId});
+    game.addPlayerByRfid(req.body.cardId);
 
     res.sendStatus(200);
 });
@@ -95,7 +95,7 @@ app.post('/hardware/buttonpress', function(req, res) {
 
     console.log('buttonpress', req.body.buttonNum);
 
-    game.feelerPressed(req.body.buttonNum);
+    game.feelerPressed({data: req.body.buttonNum});
 
     res.sendStatus(200);
 });
