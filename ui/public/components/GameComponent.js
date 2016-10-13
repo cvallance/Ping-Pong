@@ -100,12 +100,11 @@ var GameComponent = module.exports = React.createClass({
         });
 
         function addPlayer() {
-            var $in = $('input');
-            var name = $in.val();
+            var input = $('input');
+            var name = input.val();
 
             if (name == '') { return; }
-
-            $in.val('');
+            input.val('');
             node.socket.emit('fakeJoin', {'name' : name});
         }
 
